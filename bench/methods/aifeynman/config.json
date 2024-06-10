@@ -1,0 +1,9 @@
+{
+  "name": "AI-Feynman",
+  "key": "aifeynman",
+  "python_version": "3.10.13",
+  "install_commands": [
+    "sudo apt install gfortran",
+    "pip install git+https://github.com/lacava/AI-Feynman"
+  ]
+}

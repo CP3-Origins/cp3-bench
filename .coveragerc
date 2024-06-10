@@ -1,0 +1,7 @@
+[run]
+omit =
+    # Ignore list
+    /usr/lib/*
+    bench/methods/*
+    tests/utils/*
+    */__init__.py

@@ -1,0 +1,10 @@
+{
+  "name": "Deep Symbolic Optimization",
+  "key": "dso",
+  "python_version": "3.7",
+  "install_commands": [
+    "mkdir deps",
+    "git clone https://github.com/dso-org/deep-symbolic-optimization.git deps/deep-symbolic-optimization",
+    "pip install -e deps/deep-symbolic-optimization/dso"
+  ]
+}

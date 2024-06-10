@@ -1,0 +1,12 @@
+{
+  "name": "Deep Symbolic Regression",
+  "key": "dsr",
+  "python_version": "3.7",
+  "install_commands": [
+    "sudo apt install -y mpich",
+    "mkdir deps",
+    "git clone https://github.com/lacava/deep-symbolic-regression.git deps/dsr",
+    "pip install -r deps/dsr/requirements.txt",
+    "pip install -e deps/dsr/dsr"
+  ]
+}

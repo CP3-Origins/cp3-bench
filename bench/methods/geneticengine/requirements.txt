@@ -1,0 +1,7 @@
+click
+numpy
+sympy
+pandas
+coverage
+geneticengine==0.0.18
+scikit-learn

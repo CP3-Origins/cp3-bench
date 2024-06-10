@@ -1,0 +1,8 @@
+{
+  "name": "GPZGD",
+  "key": "gpzgd",
+  "python_version": "3.10.13",
+  "install_commands": [
+    "cd gpzgd && make nuke && make"
+  ]
+}

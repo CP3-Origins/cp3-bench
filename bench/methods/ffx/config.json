@@ -1,0 +1,11 @@
+{
+  "name": "Fast Function Extraction",
+  "key": "ffx",
+  "python_version": "3.7",
+  "install_commands": [
+    "mkdir deps",
+    "git clone https://github.com/natekupp/ffx.git deps/ffx",
+    "sed -i 's/sklearn/scikit-learn/g' deps/ffx/setup.py",
+    "pip install -e deps/ffx"
+  ]
+}
