@@ -9,7 +9,7 @@ STATUS.md
 **/methods/*/deps
 
 # Ignore results
-python/**/results/*
+bench/results/*
 
 # Ignore output from PySR
 **/hall_of_fame*.*
