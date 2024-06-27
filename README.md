@@ -111,7 +111,8 @@ and creation of the environments, then check that `pyenv` is correctly installed
 We invite the community to further develop this codebase. You can either work on improvements of the 
 framework as mentioned in the list below:
 
-- [ ] Ensure that all classes has the `output_format` function, and that they all output the expression
+- [ ] Ensure that all classes have the `output_format` function, and that they all output the expression
+
   in the same style.
   - [ ] Enable a unified simplification procedure e.g. using SymPy to simplify the equation and allow 
     for a SymPy compatible output.
