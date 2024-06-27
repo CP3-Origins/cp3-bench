@@ -1,0 +1,18 @@
+# Ignore
+.idea
+.coverage
+*.pt
+STATUS.md
+.python-version
+
+# Ignore deps
+**/methods/*/deps
+
+# Ignore results
+python/**/results/*
+
+# Ignore output from PySR
+**/hall_of_fame*.*
+
+# Ignore Py chache
+**/__pycache__/

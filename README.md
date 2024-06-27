@@ -106,6 +106,48 @@ and creation of the environments, then check that `pyenv` is correctly installed
 - If you get `ImportModelError` in the tests, it might be because you have not set
   paths correctly for `pyenv` or initialized `pyenv`.
 
+## Contribution
+
+We invite the community to further develop this codebase. You can either work on improvements of the 
+framework as mentioned in the list below:
+
+- [ ] Ensure that all classes has the `output_format` function, and that they all output the expression
+  in the same style.
+  - [ ] Enable a unified simplification procedure e.g. using SymPy to simplify the equation and allow 
+    for a SymPy compatible output.
+  - [ ] Allow the algorithm to report the MSE from the final output expression as an option.
+- [ ] Add new algorithms.
+- [ ] Fix Genetic Programming limitations on the DSO and uDSR algorithms.
+- [ ] Improve the implementation of AI-Feynman including improving the multi-core capabilities.
+- [ ] Improve hyperparameter tuning.
+- [ ] Make a template for adding new algorithms.
+
+All improvements are to be done via a pull request to the main branch. This will then be reviewed 
+by the code owners.
+
+If you add new algorithms they must pass the general tests. 
+Remember to update the tests if you change the functioning of parts of the code base to ensure 
+that the functionality of the update is also covered. General tests can be found in the `tests` folder
+and tests for the symbolic algorithm is set in the algorithm folder.
+
+You can report bugs and suggestions via email or create an issue where you describe the problem or
+suggestion.
+
+# Citation
+
+If you want to use `cp3-bench` please cite:
+```
+@misc{thing2024cp3bench,
+      title={cp3-bench: A tool for benchmarking symbolic regression algorithms tested with cosmology}, 
+      author={Mattias E. Thing and Sofie M. Koksbang},
+      year={2024},
+      eprint={2406.15531},
+      archivePrefix={arXiv},
+      primaryClass={astro-ph.IM},
+      url={https://arxiv.org/abs/2406.15531}, 
+}
+```
+
 # Credits
 
 This packages builds on the work of many authors who have created various of different
