@@ -37,3 +37,22 @@ jobs:
     - name: Test with pytest
       run: |
         python -m unittest tests/test_**.py
+    - name: Install pyenv
+      run: |
+        # Prerequisites
+        sudo apt update; sudo apt install -y build-essential libssl-dev zlib1g-dev \
+        libbz2-dev libreadline-dev libsqlite3-dev curl \
+        libncursesw5-dev xz-utils tk-dev libxml2-dev libxmlsec1-dev libffi-dev liblzma-dev
+        
+        # Pyenv install and init
+        curl https://pyenv.run | bash
+        export PYENV_ROOT="$HOME/.pyenv"
+        [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+        eval "$(pyenv init -)"
+        eval "$(pyenv virtualenv-init -)"
+    - name: Build benchmark
+      run: |
+        python bench/install.py
+    - name: Test build
+      run: |
+        python tests/utils/test_build.py
