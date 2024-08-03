@@ -7,7 +7,7 @@ regression algorithms or methods. The supported algorithms are mentioned in the 
 
 **NOTE**: This tool currently runs only on Ubuntu. However, some algorithms may work on 
 other operating systems. For Windows users we recommend running Windows Subsystems for 
-Linux (WSL).
+Linux (WSL). Some components may not work without admin privileges.
 
 To run this bench you need Python 3.10 or newer, `pip`, and [pyenv](https://github.com/pyenv/pyenv). 
 For Ubuntu the `pyenv` dependencies can  be installed by: 
@@ -44,7 +44,16 @@ pyenv versions
 
 ## Getting started
 
-To get started get Python dependencies:
+To get started clone the repository with SSH:
+```shell
+git clone git@github.com:CP3-Origins/cp3-bench.git
+```
+or HTTPS:
+```shell
+git clone https://github.com/CP3-Origins/cp3-bench.git
+```
+
+Then get Python dependencies:
 ```shell
 pip install -r requirements.txt
 ```
