@@ -103,7 +103,7 @@ class OperonProcedure(MethodEvaluator):
         logging.info(f"Operon MSE is: {mse}")
         logging.info(model_expression)
         result = {
-            "method": "Template",
+            "method": "Operon",
             "mse": mse,
             "equation": model_expression
         }

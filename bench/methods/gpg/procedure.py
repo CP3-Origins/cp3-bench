@@ -57,7 +57,7 @@ class GpgProcedure(MethodEvaluator):
         logging.info(f"gpg MSE is: {mse}")
         logging.info(model_expression)
         result = {
-            "method": "Template",
+            "method": "gpg",
             "mse": mse,
             "equation": model_expression
         }
