@@ -1,7 +1,7 @@
 {
   "name": "gpg",
   "key": "gpg",
-  "python_version": "3.10.13",
+  "python_version": "3.9",
   "install_commands": [
     "sudo apt install -y libeigen3-dev",
     "sudo apt install -y python3-pybind11",
