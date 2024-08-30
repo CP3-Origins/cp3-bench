@@ -53,7 +53,7 @@ class GpgProcedure(MethodEvaluator):
 
         yhat = self._method.predict(test_x)
         mse = np.square(yhat - test_y).mean()
-        model_expression = self._method.model
+        model_expression = str(self._method.model)
         logging.info(f"gpg MSE is: {mse}")
         logging.info(model_expression)
         result = {
