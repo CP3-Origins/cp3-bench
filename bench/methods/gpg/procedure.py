@@ -88,7 +88,7 @@ def main(data_path: str, verbose: int, test: bool) -> None:
     if result == 1:
         logging.error(f"Failed to evaluate Template procedure with data from the path {data_path}.")
         result = {
-            "method": f"Template procedure failed with data from {data_path}",
+            "method": f"gpg procedure failed with data from {data_path}",
             "mse": 0,
             "equation": "No equation obtained"
         }
