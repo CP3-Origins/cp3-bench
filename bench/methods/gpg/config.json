@@ -7,7 +7,9 @@
     "sudo apt install -y python3-pybind11",
     "mkdir deps",
     "git clone https://github.com/marcovirgolin/gpg.git deps/gpg",
-    "cd deps/gpg && make && cd -",
-    "pip install -e deps/gpg/src/pypkg"
+    "sed -i 's/python setup.py install --user --force && \\/pip install -e ./g' deps/gpg/Makefile",
+    "sed -i 's/cd ../ && \\//g' deps/gpg/Makefile",
+    "sed -i 's/rm -r pypkg//g' deps/gpg/Makefile",
+    "cd deps/gpg && make && cd -"
   ]
 }
