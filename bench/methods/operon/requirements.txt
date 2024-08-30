@@ -3,3 +3,4 @@ numpy
 pandas
 coverage
 pyoperon
+scikit-learn
