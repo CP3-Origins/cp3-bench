@@ -148,6 +148,13 @@ def install(methods: str, reinstall: bool) -> None:
                             if f"{config['key']}" == value.split(" --> ")[0]:
                                 environment_exists = True
 
+                # If the version is already installed skip installation
+                if python_exists:
+                    logging.info(f"Python version {config['python_version']} already installed.")
+                else:
+                    commands.append(f"pyenv install {config['python_version']}")
+                    logging.info(f"Installing Python version: {config['python_version']}")
+
                 # If the environment already exists do not create it
                 if environment_exists:
                     logging.info(f"Virtual environment named {config['key']} already exists.")
