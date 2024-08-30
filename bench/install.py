@@ -137,23 +137,11 @@ def install(methods: str, reinstall: bool) -> None:
                 for output in pyenv_versions:
                     trimmed_value = output.strip()
 
-                    # Check if Python version is already installed
-                    split_list = trimmed_value.split("/")
-                    for value in split_list:
-                        if value.count('.') == 2 and config['python_version'] in value:
-                            python_exists = True
-
+                    # Check if environment already installed
                     for value in split_list:
                         if " --> " in value:
                             if f"{config['key']}" == value.split(" --> ")[0]:
                                 environment_exists = True
-
-                # If the version is already installed skip installation
-                if python_exists:
-                    logging.info(f"Python version {config['python_version']} already installed.")
-                else:
-                    commands.append(f"pyenv install {config['python_version']}")
-                    logging.info(f"Installing Python version: {config['python_version']}")
 
                 # If the environment already exists do not create it
                 if environment_exists:
