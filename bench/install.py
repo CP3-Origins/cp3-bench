@@ -137,7 +137,12 @@ def install(methods: str, reinstall: bool) -> None:
                 for output in pyenv_versions:
                     trimmed_value = output.strip()
 
-                    # Check if environment already installed
+                    # Check if Python version is already installed
+                    split_list = trimmed_value.split("/")
+                    for value in split_list:
+                        if value.count('.') == 2 and config['python_version'] in value:
+                            python_exists = True
+
                     for value in split_list:
                         if " --> " in value:
                             if f"{config['key']}" == value.split(" --> ")[0]:
