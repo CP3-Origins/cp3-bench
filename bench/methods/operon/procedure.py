@@ -99,7 +99,7 @@ class OperonProcedure(MethodEvaluator):
 
         yhat = self._method.predict(test_x)
         mse = np.square(yhat - test_y).mean()
-        model_expression = self._method.get_model_string(self._method.model_, 4)
+        model_expression = self._method.get_model_string(self._method.model_, 5)
         logging.info(f"Operon MSE is: {mse}")
         logging.info(model_expression)
         result = {
