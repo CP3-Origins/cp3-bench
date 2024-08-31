@@ -41,7 +41,7 @@ class GpgProcedure(MethodEvaluator):
                 "g": -1,                       # no generation limit,
                 "d": 6,                        # maximum tree depth
                 "tour": 5,                     # tournament size
-                "pop": 2048,                   # population size
+                "pop": 1048,                   # population size
                 "finetune": True,              # whether to fine-tune the coefficients after the search
                 "finetune_max_evals": 10_000,  # 10,000 evaluations limit for fine-tuning
                 "verbose": True,               # print progress
