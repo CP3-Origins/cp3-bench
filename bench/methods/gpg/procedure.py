@@ -36,12 +36,12 @@ class GpgProcedure(MethodEvaluator):
             }
         else:
             params = {
-                "e": 100_000,                   # 50,000 evaluations limit for search
+                "e": 200_000,                   # 50,000 evaluations limit for search
                 "t": 7200,                     # time limit,
                 "g": -1,                       # no generation limit,
                 "d": 6,                        # maximum tree depth
                 "tour": 5,                     # tournament size
-                "pop": 5000,                   # population size
+                "pop": 4096,                   # population size
                 "finetune": True,              # whether to fine-tune the coefficients after the search
                 "finetune_max_evals": 10_000,  # 10,000 evaluations limit for fine-tuning
                 "verbose": True,               # print progress
