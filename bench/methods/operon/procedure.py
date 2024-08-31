@@ -76,18 +76,18 @@ class OperonProcedure(MethodEvaluator):
                 "male_selector": "tournament",
                 "max_depth": 10,
                 "max_evaluations": 1000000,
-                "max_length": 50,
+                "max_length": 20,
                 "max_selection_pressure": 100,
                 "model_selection_criterion": "minimum_description_length",
                 "mutation_probability": 0.25,
                 "n_threads": 32,
                 "objectives": [ 'r2', 'length' ],
                 "offspring_generator": "basic",
-                "pool_size": 1000,
-                "population_size": 1000,
+                "pool_size": 10000,
+                "population_size": 10000,
                 "random_state": None,
                 "reinserter": "keep-best",
-                "time_limit": 3600,
+                "time_limit": 7200,
                 "tournament_size": 3
             }
 
