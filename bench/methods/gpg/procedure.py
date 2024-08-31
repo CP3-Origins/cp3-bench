@@ -39,10 +39,13 @@ class GpgProcedure(MethodEvaluator):
                 "e": 50_000,                   # 50,000 evaluations limit for search
                 "t": 7200,                     # time limit,
                 "g": -1,                       # no generation limit,
-                "d": 5,                        # maximum tree depth
+                "d": 6,                        # maximum tree depth
+                "tour": 5,                     # tournament size
+                "pop": 2048,                   # population size
                 "finetune": True,              # whether to fine-tune the coefficients after the search
                 "finetune_max_evals": 10_000,  # 10,000 evaluations limit for fine-tuning
-                "verbose": True                # print progress
+                "verbose": True,               # print progress
+                "fset": '+,-,*,/,log,sqrt,sin,cos,exp' # operators to use
             }
 
         self._method = GPGRegressor(**params)
