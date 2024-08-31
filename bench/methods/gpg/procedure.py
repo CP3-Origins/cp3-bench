@@ -45,7 +45,7 @@ class GpgProcedure(MethodEvaluator):
                 "finetune": True,              # whether to fine-tune the coefficients after the search
                 "finetune_max_evals": 10_000,  # 10,000 evaluations limit for fine-tuning
                 "verbose": True,               # print progress
-                "fset": '+,-,*,/,log,sqrt,sin,cos,exp' # operators to use
+                "fset": '+,-,*,/,log,sqrt,sin,cos' # operators to use
             }
 
         self._method = GPGRegressor(**params)
