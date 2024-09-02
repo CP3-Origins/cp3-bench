@@ -66,7 +66,7 @@ class OperonProcedure(MethodEvaluator):
                 "crossover_probability": 1.0,
                 "epsilon": 1e-06,
                 "female_selector": "tournament",
-                "generations": 10000,
+                "generations": 100000,
                 "initialization_max_depth": 5,
                 "initialization_max_length": 10,
                 "initialization_method": "btc",
