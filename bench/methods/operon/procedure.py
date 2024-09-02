@@ -80,7 +80,7 @@ class OperonProcedure(MethodEvaluator):
                 "max_selection_pressure": 100,
                 "model_selection_criterion": "minimum_description_length",
                 "mutation_probability": 0.25,
-                "n_threads": -1,
+                "n_threads": 32,
                 "objectives": ['r2', 'length'],
                 "offspring_generator": "basic",
                 "pool_size": 10000,
