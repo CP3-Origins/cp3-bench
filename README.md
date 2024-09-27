@@ -334,6 +334,45 @@ different authors of the packages we use. Currently, we have implemented:
        year={2020}
     }
     ```
+- GPG
+  - Name: gpg
+  - [GitHub link](https://github.com/marcovirgolin/gpg)
+  - .bibtex:
+    ```
+    @article{virgolin2021improving,
+      title={Improving model-based genetic programming for symbolic regression of small expressions},
+      author={Virgolin, Marco and Alderliesten, Tanja and Witteveen, Cees and Bosman, Peter A. N.},
+      journal={Evolutionary Computation},
+      volume={29},
+      number={2},
+      pages={211--237},
+      year={2021},
+      publisher={MIT Press}
+    }
+    ```
+
+- Operon
+  - Name: Operon
+  - [GitHub link](https://github.com/heal-research/pyoperon/)
+  - .bibtex:
+    ```
+    @inproceedings{10.1145/3377929.3398099,
+        author = {Burlacu, Bogdan and Kronberger, Gabriel and Kommenda, Michael},
+        title = {Operon C++: An Efficient Genetic Programming Framework for Symbolic Regression},
+        year = {2020},
+        isbn = {9781450371278},
+        publisher = {Association for Computing Machinery},
+        address = {New York, NY, USA},
+        url = {https://doi.org/10.1145/3377929.3398099},
+        doi = {10.1145/3377929.3398099},
+        booktitle = {Proceedings of the 2020 Genetic and Evolutionary Computation Conference Companion},
+        pages = {1562–1570},
+        numpages = {9},
+        keywords = {symbolic regression, genetic programming, C++},
+        location = {Canc\'{u}n, Mexico},
+        series = {GECCO '20}
+    }
+    ```
 
 This work is inspired by and uses a limited number of features from [SRBench](https://github.com/cavalab/srbench/):
 ```
