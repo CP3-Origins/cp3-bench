@@ -22,15 +22,19 @@ jobs:
     steps:
       - name: Checkout and docker build
         uses: actions/checkout@v3
+      
+      - name: QEMU setup
+        uses: docker/setup-qemu-action@v3
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
 
-      - uses: docker/build-push-action@v4
+      - uses: docker/build-push-action@v6
         with:
           context: .
           file: "Dockerfile"
           tags: cp3-bench
+          platforms: linux/amd64,linux/arm64
           load: true
           cache-from: type=gha
           cache-to: type=gha,mode=max

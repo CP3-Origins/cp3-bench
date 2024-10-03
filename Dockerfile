@@ -54,7 +54,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 # Install brew
 RUN export HOMEBREW_NO_INSTALL_FROM_API=1
-RUN curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh
+RUN /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 RUN echo >> /root/.bashrc
 RUN echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >> /root/.bashrc
 RUN eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
