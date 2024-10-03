@@ -26,5 +26,5 @@ jobs:
       - name: Build docker iamge
         run: docker build -t cp3-bench .
       
-      - namw: Run docker container
+      - name: Run docker container
         run: docker run cp3-bench python -m unittest tests/utitls/test_build.py
