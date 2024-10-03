@@ -27,6 +27,7 @@ jobs:
         with:
           context: .
           file: "Dockerfile"
+          platforms: linux/amd64
           tags: cp3-bench
           load: true
           cache-from: type=gha
