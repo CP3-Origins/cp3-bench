@@ -100,9 +100,6 @@ eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
 ```
 
-docker build . -t cp3-bench --build-arg METHODS=ffx
-docker run -it cp3-bench
-
 ## Automated installation
 
 This section explains how to get started with cp3-bench using Docker. If you want to learn more check out 
@@ -115,7 +112,20 @@ This installation method requires Docker which can be run on all common operatin
 
 ### Installation steps
 
-To install cp3-bench with Docker you first need to build the image. This can be done with the build command:
+To install cp3-bench start by cloning the repository with SSH:
+
+```shell
+git clone git@github.com:CP3-Origins/cp3-bench.git
+```
+
+or with HTTPS:
+
+```shell
+git clone https://github.com/CP3-Origins/cp3-bench.git
+```
+
+To setup cp3-bench with Docker you first need to build the image. This can be done with the build command
+assuming you are in the root folder of cp3-bench:
 
 ```shell
 docker build . -t cp3-bench
