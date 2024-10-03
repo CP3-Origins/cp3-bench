@@ -1,7 +1,10 @@
+import os
 import logging
 
+PATH = os.path.dirname(os.path.abspath(__file__))[:-len("/utils")]
 
-def read_status(status_list: list, filename: str="STATUS.md") -> list:
+
+def read_status(status_list: list, filename: str=f"{PATH}/STATUS.md") -> list:
     """
     Reads the status of the STATUS.md file as default
     and returns a list of dictionaries containing the status of the
