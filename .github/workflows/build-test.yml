@@ -10,9 +10,8 @@ on:
   push:
     branches: [ "master" ]
   pull_request:
-    pull_request:
-      branches:
-        - "**"
+    branches:
+      - "**"
 
 permissions:
   contents: read
