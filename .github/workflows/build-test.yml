@@ -25,19 +25,9 @@ jobs:
     steps:
       - name: Checkout and docker build
         uses: actions/checkout@v3
-        
-      - uses: docker/build-push-action@v6
-        with:
-          context: .
-          file: "Dockerfile"
-          tags: cp3-bench
-          load: true
-          cache-from: type=gha
-          cache-to: type=gha,mode=max
-          push: false
 
+      - name: Build Docker image
+        run: docker build -t cp3-bench
+      
       - name: Run tests
-        uses: addnab/docker-run-action@v3
-        with:
-          image: cp3-bench
-          run: python -m unittest tests/utils/test_build.py
+        run: docker run -it cp3-bench python -m unittest tests/utils/test_build.py
