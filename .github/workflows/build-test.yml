@@ -29,11 +29,10 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
 
-      - uses: docker/build-push-action@v6
+      - uses: docker/build-push-action@v1
         with:
           context: .
           file: "Dockerfile"
-          platforms: linux/aarch64
           tags: cp3-bench
           load: true
           cache-from: type=gha
