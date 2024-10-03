@@ -27,7 +27,7 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Build Docker image
-        run: docker build -t cp3-bench
+        run: docker build -t cp3-bench .
       
       - name: Run tests
         run: docker run -it cp3-bench python -m unittest tests/utils/test_build.py
