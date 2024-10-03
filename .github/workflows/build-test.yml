@@ -13,22 +13,16 @@ on:
     branches:
       - "**"
 
-permissions:
-  contents: read
-
-env:
-  DOCKER_BUILDKIT: 0
-
 jobs:
   build_set_method:
     runs-on: ubuntu-latest
     outputs:
-      method: ${{ steps.set_method.outputs.method }}
+      matrix: ${{ steps.matrix.outputs.method }}
     steps:
       - name: Set method
-        id: set_method
-        run: echo "value=[\"aifeynman\"]" >> $GITHUB_OUTPUT
-      - run: echo "${{ steps.set_method.outputs.method }}"
+        id: matrix
+        run: echo "value=[\"aifeynman\", \"dsr\"]" >> $GITHUB_OUTPUT
+      - run: echo "${{ steps.matrix.outputs.method }}"
 
   build_test:
     needs: build_set_method

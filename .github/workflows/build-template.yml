@@ -8,6 +8,8 @@ on:
         required: true
         type: string
 
+env:
+  DOCKER_BUILDKIT: 0
 
 jobs:
   build_template:
