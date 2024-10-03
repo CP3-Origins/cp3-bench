@@ -17,7 +17,7 @@ jobs:
   build_set_method:
     runs-on: ubuntu-latest
     outputs:
-      matrix: ${{ steps.matrix.outputs.method }}
+      matrix: ${{ steps.matrix.outputs.value }}
     steps:
       - name: Set method
         id: matrix
