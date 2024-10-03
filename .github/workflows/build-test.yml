@@ -22,14 +22,14 @@ jobs:
       - name: Set method
         id: matrix
         run: echo "value=[\"aifeynman\", \"dsr\"]" >> $GITHUB_OUTPUT
-      - run: echo "${{ steps.matrix.outputs.method }}"
+      - run: echo "${{ steps.matrix.outputs.value }}"
 
   build_test:
     needs: build_set_method
     strategy:
       matrix:
-        method: ${{fromJson(needs.build_test_method.outputs.method)}}
+        value: ${{fromJSON(needs.build_set_method.outputs.matrix)}}
     uses: ./.github/workflows/build-template.yml
     name: Build test
     with:
-      method: ${{ matrix.method }}
+      method: ${{ matrix.value }}
