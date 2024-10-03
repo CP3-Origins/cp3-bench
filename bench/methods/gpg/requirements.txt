@@ -11,3 +11,4 @@ torch==1.13.1
 functorch==1.13.1
 sympytorch==0.1.4
 stopit==1.1.2
+cmake

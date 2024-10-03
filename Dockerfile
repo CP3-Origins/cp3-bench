@@ -1,12 +1,15 @@
 # Methods to install, default all
-ARG METHODS="dsr"
+ARG METHODS="all"
 
-# Use an official Python runtime as a parent image
-FROM ubuntu:20.04
+# Get the base image
+FROM ubuntu:22.04
 ARG DEBIAN_FRONTEND=noninteractive
 
 # Set methods value
 ARG METHODS
+
+# Alias python to python3
+RUN echo "alias python=python3" >> ~/.bashrc
 
 # Set sudo
 RUN apt-get update && apt-get install -y sudo
@@ -16,6 +19,9 @@ RUN apt-get update \
   && apt-get dist-upgrade -y \
   && apt-get install -y --no-install-recommends \
     git \
+    wget \
+    python3-dev \
+    pip \
     nano\
     ssh-client \
     software-properties-common \
@@ -49,14 +55,17 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Install brew
 RUN export HOMEBREW_NO_INSTALL_FROM_API=1
 RUN /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+RUN echo >> /root/.bashrc
+RUN echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >> /root/.bashrc
+RUN eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+ENV PATH="/home/linuxbrew/.linuxbrew/bin:${PATH}"
 
 # Install pyenv
-#RUN git clone https://github.com/pyenv/pyenv.git ~/.pyenv
-#RUN git clone https://github.com/pyenv/pyenv-virtualenv.git $(pyenv root)/plugins/pyenv-virtualenv
 RUN brew update
 RUN brew install pyenv
-RUN brew install pyenv-virtualenv \
+RUN brew install pyenv-virtualenv 
 
+# Set paths
 ENV PYENV_ROOT="${HOME}/.pyenv"
 ENV PATH="${PYENV_ROOT}/shims:${PYENV_ROOT}/bin:${PATH}"
 
@@ -66,10 +75,4 @@ RUN echo 'eval "$(pyenv init -)"' >> ~/.bashrc
 RUN echo 'eval "$(pyenv virtualenv-init  -)"' >> ~/.bashrc
 
 # Install cp3-methods
-#RUN eval "$(pyenv init -)"
-#RUN eval "$(pyenv virtualenv-init -)"
-#RUN python ./bench/install.py --methods $METHODS
-
-# Initialize again
-#RUN eval "$(pyenv init -)"
-#RUN eval "$(pyenv virtualenv-init -)"
+RUN python3 ./bench/install.py --methods $METHODS
