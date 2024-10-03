@@ -1,11 +1,17 @@
 name: Build test
 
-on:
-  workflow_run:
-    workflows: ["Python test"]
-    types:
-      - completed
+# on:
+#   workflow_run:
+#     workflows: ["Python test"]
+#     types:
+#       - completed
 
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+    
 permissions:
   contents: read
 
