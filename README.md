@@ -131,7 +131,13 @@ assuming you are in the root folder of cp3-bench:
 docker build . -t cp3-bench
 ```
 
-**Note:** that this uses the tag flag `-t` to name the build `cp3-bench` which is a convinient way to label different builds. You can name it as you want or in principle leave out the tag.
+This command uses the tag flag `-t` to name the build `cp3-bench` which is a convinient way to label different builds. You can name it as you want or in principle leave out the tag.
+
+**Note:** This build does not support Docker BuildKit. You may disable it by setting `DOCKER_BUILDKIT=0`. You can also set it during the command using:
+
+```shell
+DOCKER_BUILDKIT=0 docker build . -t cp3-bench
+```
 
 The default is to install all cp3-bench with all methods, but we allow for a build argument to select a subset
 of methods to be installed using the following command:
@@ -185,6 +191,8 @@ key element of this benchmark tool.
 and creation of the environments, then check that `pyenv` is correctly installed.
 - If you get `ImportModelError` in the tests, it might be because you have not set
   paths correctly for `pyenv` or initialized `pyenv`.
+- If you get `Error: buildx failed with: ERROR to solve: process "/bin/sh/-c..` then this might indicate 
+  that  you are using Docker BuildKit, disable by setting `DOCKER_BUILDKIT=0` 
 
 ## Contribution
 

@@ -20,14 +20,23 @@ env:
   DOCKER_BUILDKIT: 0
 
 jobs:
-  build_test:
+  build_test_method:
     runs-on: ubuntu-latest
+    outputs:
+      method: ${{ steps.set_method.outputs.method }}
     steps:
-      - name: Checkout and docker build
-        uses: actions/checkout@v3
+      - name: Set method
+        id: set_method
+        run: echo "value=[\"aifeynman\"]" >> $GITHUB_OUTPUT
+      - run: echo "${{ steps.set_method.outputs.method }}"
 
-      - name: Build Docker image
-        run: docker build -t cp3-bench .
-      
-      - name: Run tests
-        run: docker run -it cp3-bench python -m unittest tests/utils/test_build.py
+  build_test:
+    needs: build_test_method
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        method: ${{fromJson(needs.build_test_method.outputs.method)}}
+    uses: ./.github/workflows/build-template.yml
+    name: Build test
+    with:
+      method: ${{ matrix.method }}
