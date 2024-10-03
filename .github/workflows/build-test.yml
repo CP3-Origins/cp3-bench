@@ -20,7 +20,7 @@ env:
   DOCKER_BUILDKIT: 0
 
 jobs:
-  build_test_method:
+  build_set_method:
     runs-on: ubuntu-latest
     outputs:
       method: ${{ steps.set_method.outputs.method }}
@@ -31,8 +31,7 @@ jobs:
       - run: echo "${{ steps.set_method.outputs.method }}"
 
   build_test:
-    needs: build_test_method
-    runs-on: ubuntu-latest
+    needs: build_set_method
     strategy:
       matrix:
         method: ${{fromJson(needs.build_test_method.outputs.method)}}
