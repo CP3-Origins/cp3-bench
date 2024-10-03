@@ -32,9 +32,9 @@ jobs:
           cache-from: type=gha
           cache-to: type=gha,mode=max
           push: false
-          
+
       - name: Run tests
-      - uses: addnab/docker-run-action@v3
+        uses: addnab/docker-run-action@v3
         with:
           image: cp3-bench
           run: python -m unittest tests/utils/test_build.py
