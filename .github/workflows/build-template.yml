@@ -16,20 +16,19 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-
-      - name: Setup QEMU
-        uses: docker/setup-qemu-action@v3
+      - name: Checkout and docker build
+        uses: actions/checkout@v3
 
       - name: Docker setup
         uses: docker/setup-buildx-action@v3
+        env:
+          DOCKER_BUILDKIT: 0
 
       - name: Build Docker image
         uses: docker/build-push-action@v6
         with:
           context: .
-          file: /Dockerfile
+          file: Dockerfile
           push: false
           tags: cp3-bench
           load: true
