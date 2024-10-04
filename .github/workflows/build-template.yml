@@ -43,7 +43,7 @@ jobs:
         uses: addnab/docker-run-action@v3
         with:
           image: cp3-bench
-          run: echo "Hello, world!"
+          run: python -m unittest tests/utils/test_build.py
 
     #   - name: Enter container
     #     run: docker run cp3-bench -it bin/bash
