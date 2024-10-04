@@ -1,0 +1,52 @@
+name: Build template
+
+on:
+  workflow_call:
+    inputs:
+      method:
+        description: "Method to test"
+        required: true
+        type: string
+
+env:
+  DOCKER_BUILDKIT: 0
+
+jobs:
+  build_template:
+    runs-on: ubuntu-latest
+    
+    # steps:
+    #   - name: Checkout and docker build
+    #     uses: actions/checkout@v3
+    #   - name: Build Docker image
+    #     uses: docker/build-push-action@v6
+    #     with:
+    #       context: .
+    #       file: Dockerfile
+    #       push: false
+    #       tags: cp3-bench
+    #       load: true
+    #       cache-from: type=gha
+    #       cache-to: type=gha,mode=max
+    #       build-args: |
+    #         METHODS=${{ inputs.method }}
+
+
+    steps:
+      - name: Checkout and docker build
+        uses: actions/checkout@v3
+
+      - name: Build Docker image
+        run: docker build -t cp3-bench . --build-arg METHODS=${{ inputs.method }}
+
+      - name: Run tests
+        uses: addnab/docker-run-action@v3
+        with:
+          image: cp3-bench
+          run: python3 -m unittest tests/utils/test_build.py
+
+    #   - name: Enter container
+    #     run: docker run cp3-bench -it bin/bash
+
+    #   - name: Run tests
+    #     run: python -m unittest tests/utils/test_build.py

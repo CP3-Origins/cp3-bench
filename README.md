@@ -1,16 +1,33 @@
 # Python for CP3 Bench
 
 This benchmark tool easily allows users to easily run a dataset across multiple symbolic
-regression algorithms or methods. The supported algorithms are mentioned in the credits sections.
+regression algorithms or methods. The supported algorithms are mentioned in the credits section.
 
-## Prerequisites
+## Gettings started
+
+We offer two methods for using cp3-bench:
+
+1. Manual installation on Ubuntu
+2. Automated installation with Docker
+
+First we go through the manual steps and then introduce the automated installation with docker.
+The advantage of doing the manual installation is that you do not need docker, but you will 
+need admin privileges and ensure that your `pyenv` is configured correctly and initialized. The advantage of Docker
+is that we ensure that everything is correctly setup out of the box.
+
+## Manual installation
+
+This sections how you would install cp3-bench on a Ubuntu. It is key to the **success** of this procedure
+that you correctly install and initialize `pyenv` and the virtual environments.
+
+### Prerequisites
 
 **NOTE**: This tool currently runs only on Ubuntu. However, some algorithms may work on 
 other operating systems. For Windows users we recommend running Windows Subsystems for 
-Linux (WSL).
+Linux (WSL) and you may consider using the Docker installation. For this to work you also need admin privileges.
 
-To run this bench you need Python 3.10 or newer, `pip`, and [pyenv](https://github.com/pyenv/pyenv). 
-For Ubuntu the `pyenv` dependencies can  be installed by: 
+To run this bench you need Ubunuty 22.04 or newer, Python 3.10 or newer, `pip`, and [pyenv](https://github.com/pyenv/pyenv). 
+On Ubuntu the `pyenv` dependencies can  be installed by: 
 ```shell
 sudo apt update
 sudo apt install build-essential libssl-dev zlib1g-dev \
@@ -42,9 +59,21 @@ You can check the version selected using:
 pyenv versions
 ```
 
-## Getting started
+### Installation steps
 
-To get started get Python dependencies:
+To install cp3-bench start by cloning the repository with SSH:
+
+```shell
+git clone git@github.com:CP3-Origins/cp3-bench.git
+```
+
+or with HTTPS:
+
+```shell
+git clone https://github.com/CP3-Origins/cp3-bench.git
+```
+
+Then install the Python dependencies:
 ```shell
 pip install -r requirements.txt
 ```
@@ -56,7 +85,7 @@ python bench/install.py
 ```
 Optional flags: `--methods` and `--reinstall`. Use `--help` for details.
 
-The first flag allows you to select what methods you want to install, default is all.
+The first flag allows you to select what methods you want to install, default is to install all methods.
 The second flag allows you  to reinstall a method which can be useful if the install went wrong,
 possible due to `pyenv` being improbably configured.
 
@@ -64,14 +93,71 @@ The status of the installation can be found in the `STATUS.md` file in the `benc
 This will help give an overview over which packages are installed, and details on what 
 install steps have failed, in case a method failed to install correctly.
 
-
-## Usage of the package
-
 Before using the package ensure `pyenv` is initialized, which can be done by these commands:
+
 ```shell
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
 ```
+
+## Automated installation
+
+This section explains how to get started with cp3-bench using Docker. If you want to learn more check out 
+this [101 tutorial](https://www.docker.com/101-tutorial/). This technology allows for the creation of an image
+which is setup with all necessities for using cp3-bench - abstracting away the installation steps.
+
+### Prerequisites
+
+This installation method requires Docker which can be run on all common operating systems such as macOS, Ubuntu, Windows (via WSL). The installation steps for Docker can be found [here](https://docs.docker.com/engine/install/).
+
+### Installation steps
+
+To install cp3-bench start by cloning the repository with SSH:
+
+```shell
+git clone git@github.com:CP3-Origins/cp3-bench.git
+```
+
+or with HTTPS:
+
+```shell
+git clone https://github.com/CP3-Origins/cp3-bench.git
+```
+
+To setup cp3-bench with Docker you first need to build the image. This can be done with the build command
+assuming you are in the root folder of cp3-bench:
+
+```shell
+docker build . -t cp3-bench
+```
+
+This command uses the tag flag `-t` to name the build `cp3-bench` which is a convinient way to label different builds. You can name it as you want or in principle leave out the tag.
+
+**Note:** This build does not support Docker BuildKit. You may disable it by setting `DOCKER_BUILDKIT=0`. You can also set it during the command using:
+
+```shell
+DOCKER_BUILDKIT=0 docker build . -t cp3-bench
+```
+
+The default is to install all cp3-bench with all methods, but we allow for a build argument to select a subset
+of methods to be installed using the following command:
+
+```shell
+docker build . -t cp3-bench --build-arg METHODS=ffx,gpg
+```
+Here you can set `METHODS` equal to the comma separated list of methods you want to install. This `build` command creates the image of fully functional system with all dependencies set and it will take some time to
+complete. Note that this image will be +10 GB in size for a full build. 
+
+To use the image you created with build you simply run:
+
+```shell
+docker run -it cp3-bench
+```
+
+This is will spin up a container based on your image and mount your terminal to that of the container. You can type `exit` (maybe a few times) to leave the container. In this container you install other methods if needed or run benchmarks as you feel like.
+
+## Usage of the package
+
 This package is intended to be used as a benchmark engine which is called by another script.
 After installing the scripts you need, it is intended that you call the `bench/evalute_dataset.py`
 with valid path to a `.csv` file with a column named `target` which is the expected output value,
@@ -105,6 +191,8 @@ key element of this benchmark tool.
 and creation of the environments, then check that `pyenv` is correctly installed.
 - If you get `ImportModelError` in the tests, it might be because you have not set
   paths correctly for `pyenv` or initialized `pyenv`.
+- If you get `Error: buildx failed with: ERROR to solve: process "/bin/sh/-c..` then this might indicate 
+  that  you are using Docker BuildKit, disable by setting `DOCKER_BUILDKIT=0` 
 
 ## Contribution
 
@@ -332,6 +420,45 @@ different authors of the packages we use. Currently, we have implemented:
        author={Udrescu, Silviu-Marian and Tan, Andrew and Feng, Jiahai and Neto, Orisvaldo and Wu, Tailin and Tegmark, Max},
        journal={arXiv preprint arXiv:2006.10782},
        year={2020}
+    }
+    ```
+- GPG
+  - Name: gpg
+  - [GitHub link](https://github.com/marcovirgolin/gpg)
+  - .bibtex:
+    ```
+    @article{virgolin2021improving,
+      title={Improving model-based genetic programming for symbolic regression of small expressions},
+      author={Virgolin, Marco and Alderliesten, Tanja and Witteveen, Cees and Bosman, Peter A. N.},
+      journal={Evolutionary Computation},
+      volume={29},
+      number={2},
+      pages={211--237},
+      year={2021},
+      publisher={MIT Press}
+    }
+    ```
+
+- Operon
+  - Name: Operon
+  - [GitHub link](https://github.com/heal-research/pyoperon/)
+  - .bibtex:
+    ```
+    @inproceedings{10.1145/3377929.3398099,
+        author = {Burlacu, Bogdan and Kronberger, Gabriel and Kommenda, Michael},
+        title = {Operon C++: An Efficient Genetic Programming Framework for Symbolic Regression},
+        year = {2020},
+        isbn = {9781450371278},
+        publisher = {Association for Computing Machinery},
+        address = {New York, NY, USA},
+        url = {https://doi.org/10.1145/3377929.3398099},
+        doi = {10.1145/3377929.3398099},
+        booktitle = {Proceedings of the 2020 Genetic and Evolutionary Computation Conference Companion},
+        pages = {1562–1570},
+        numpages = {9},
+        keywords = {symbolic regression, genetic programming, C++},
+        location = {Canc\'{u}n, Mexico},
+        series = {GECCO '20}
     }
     ```
 

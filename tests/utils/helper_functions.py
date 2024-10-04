@@ -5,7 +5,7 @@ from sklearn.model_selection import train_test_split
 PATH = pathlib.Path(__file__).parent.resolve()
 
 
-def load_dataset():
+def load_dataset() -> tuple:
     df = pd.read_csv(f"{PATH}/test_dataset.csv")
     x = df.loc[:, df.columns != "target"]
     y = df.loc[:, "target"]

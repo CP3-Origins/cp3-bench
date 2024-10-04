@@ -1,0 +1,14 @@
+{
+  "name": "gpg",
+  "key": "gpg",
+  "python_version": "3.9",
+  "install_commands": [
+    "sudo apt install -y libeigen3-dev",
+    "sudo apt install -y python3-pybind11",
+    "mkdir deps",
+    "git clone https://github.com/marcovirgolin/gpg.git deps/gpg",
+    "sed -i 's/python setup.py install --user --force && /pip install -e ./g' deps/gpg/Makefile",
+    "sed -i '15,16d' deps/gpg/Makefile",
+    "cd deps/gpg && make && cd -"
+  ]
+}

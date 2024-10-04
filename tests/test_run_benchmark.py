@@ -35,7 +35,7 @@ class TestRunBenchmark(TestCase):
                 "data_path": "test.path",
                 "file_name": "test.csv"
             }
-            result = run_benchmark(**kwargs)
+            run_benchmark(**kwargs)
 
     @patch('subprocess.run')
     def test_shell_command_is_run(self, mock_run):
