@@ -43,7 +43,7 @@ jobs:
         uses: addnab/docker-run-action@v3
         with:
           image: cp3-bench
-          entrypoint: echo "Hello, world!"
+          run: echo "Hello, world!"
 
     #   - name: Enter container
     #     run: docker run cp3-bench -it bin/bash
