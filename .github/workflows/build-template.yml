@@ -40,10 +40,10 @@ jobs:
         run: docker build -t cp3-bench . --build-arg METHODS=${{ inputs.method }}
 
       - name: Run tests
-        uses: addnab/docker_run_action@v3
+        uses: addnab/docker-run-action@v3
         with:
           image: cp3-bench
-          entrypoint: python -m unittest tests/utils/test_build.py
+          entrypoint: python -m unittest tests/utils/test_build.pyg
 
     #   - name: Enter container
     #     run: docker run cp3-bench -it bin/bash
