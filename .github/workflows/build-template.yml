@@ -24,7 +24,8 @@ jobs:
 
       - name: Build Docker image
         uses: docker/build-push-action@v6
-
+        env:
+          DOCKER_BUILDKIT: 0
         with:
           context: .
           file: Dockerfile
@@ -33,7 +34,6 @@ jobs:
           load: true
           cache-from: type=gha
           cache-to: type=gha,mode=max
-          builder: DOCKER_BUILDKIT=0
           build-args: |
             METHODS=${{ inputs.method }}
 
