@@ -32,7 +32,7 @@ jobs:
           load: true
           cache-from: type=gha
           cache-to: type=gha,mode=max
-          platform: linux/amd64
+          platforms: linux/amd64
           build-args: |
             METHODS=${{ inputs.method }}
 
