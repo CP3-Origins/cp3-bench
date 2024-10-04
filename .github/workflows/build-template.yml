@@ -14,15 +14,20 @@ env:
 jobs:
   build_template:
     runs-on: ubuntu-latest
+    container: Dockerfile
+
     steps:
-      - name: Checkout and docker build
-        uses: actions/checkout@v3
-
-      - name: Build Docker image
-        run: docker build -t cp3-bench . --build-arg METHODS=${{ inputs.method }}
-
-      - name: Enter container
-        run: docker run cp3-bench -it bin/bash
-
       - name: Run tests
         run: python -m unittest tests/utils/test_build.py
+    # steps:
+    #   - name: Checkout and docker build
+    #     uses: actions/checkout@v3
+
+    #   - name: Build Docker image
+    #     run: docker build -t cp3-bench . --build-arg METHODS=${{ inputs.method }}
+
+    #   - name: Enter container
+    #     run: docker run cp3-bench -it bin/bash
+
+    #   - name: Run tests
+    #     run: python -m unittest tests/utils/test_build.py
