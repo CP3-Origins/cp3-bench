@@ -21,7 +21,7 @@ jobs:
     steps:
       - name: Set method
         id: matrix
-        run: echo "value=[\"aifeynman\", \"dsr\"]" >> $GITHUB_OUTPUT
+        run: echo "value=[\"aifeynman\", \"dso\", \"dsr\", \"ffx\", \"geneticengine\", \"gpg\", \"gpzgd\"]" >> $GITHUB_OUTPUT
       - run: echo "${{ steps.matrix.outputs.value }}"
 
   build_test:
