@@ -16,13 +16,11 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-      - name: Checkout and docker build
-        uses: actions/checkout@v3
+      - name: Setup QEMU
+        uses: docker/setup-qemu-action@v3
 
       - name: Docker setup
         uses: docker/setup-buildx-action@v3
-        env:
-          DOCKER_BUILDKIT: 0
 
       - name: Build Docker image
         uses: docker/build-push-action@v6
@@ -34,6 +32,7 @@ jobs:
           load: true
           cache-from: type=gha
           cache-to: type=gha,mode=max
+          platform: linux/amd64
           build-args: |
             METHODS=${{ inputs.method }}
 
