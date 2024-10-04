@@ -1,17 +1,10 @@
 name: Build test
 
-# on:
-#   workflow_run:
-#     workflows: ["Python test"]
-#     types:
-#       - completed
-
 on:
-  push:
-    branches: [ "master" ]
-  pull_request:
-    branches:
-      - "**"
+  workflow_run:
+    workflows: ["Python test"]
+    types:
+      - completed
 
 jobs:
   build_set_method:
@@ -21,7 +14,7 @@ jobs:
     steps:
       - name: Set method
         id: matrix
-        run: echo "value=[\"aifeynman\", \"dso\", \"dsr\", \"ffx\", \"geneticengine\", \"gpg\", \"gpzgd\"]" >> $GITHUB_OUTPUT
+        run: echo "value=[\"aifeynman\", \"dso\", \"dsr\", \"ffx\", \"geneticengine\", \"gpg\", \"gpzgd\", \"itea\", \"operon\", \"pysr\", \"qlattice\", \"udsr\"]" >> $GITHUB_OUTPUT
       - run: echo "${{ steps.matrix.outputs.value }}"
 
   build_test:
