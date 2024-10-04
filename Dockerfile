@@ -54,14 +54,13 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 # Install brew
 RUN export HOMEBREW_NO_INSTALL_FROM_API=1
-RUN /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+RUN url -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh
 RUN echo >> /root/.bashrc
 RUN echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >> /root/.bashrc
 RUN eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 ENV PATH="/home/linuxbrew/.linuxbrew/bin:${PATH}"
 
 # Install pyenv
-RUN brew update
 RUN brew install pyenv
 RUN brew install pyenv-virtualenv 
 
