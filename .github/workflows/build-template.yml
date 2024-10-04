@@ -22,7 +22,7 @@ jobs:
         run: docker build -t cp3-bench . --build-arg METHODS=${{ inputs.method }}
 
       - name: Enter container
-        run: docker run cp3-bench -it
+        run: docker run cp3-bench -it bin/bash
 
       - name: Run tests
         run: python -m unittest tests/utils/test_build.py
