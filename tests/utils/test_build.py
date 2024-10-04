@@ -22,8 +22,8 @@ def test_build(status_list: str) -> int:
 class TestBuild(TestCase):
 
     def test_build_all_success(self):
-        status_file_path = f"{PATH}/STATUS.md"
-        status_list = read_status(status_file_path)
-        output = test_build(status_list)
+        status_list = []
+        statuses = read_status(status_list)
+        output = test_build(statuses)
         self.assertEqual(output, 0)
         logging.info("All tests passed")
