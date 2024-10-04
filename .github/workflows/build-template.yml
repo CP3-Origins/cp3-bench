@@ -21,5 +21,8 @@ jobs:
       - name: Build Docker image
         run: docker build -t cp3-bench . --build-arg METHODS=${{ inputs.method }}
 
+      - name: Enter container
+        run: docker run cp3-bench -it
+
       - name: Run tests
-        run: docker run cp3-bench -i python -m unittest tests/utils/test_build.py
+        run: python -m unittest tests/utils/test_build.py
