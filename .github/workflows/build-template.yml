@@ -16,6 +16,9 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
       - name: Setup QEMU
         uses: docker/setup-qemu-action@v3
 
@@ -26,7 +29,7 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           context: .
-          file: "./Dockerfile"
+          file: /Dockerfile
           push: false
           tags: cp3-bench
           load: true
