@@ -3,12 +3,20 @@
 This benchmark tool easily allows users to easily run a dataset across multiple symbolic
 regression algorithms or methods. The supported algorithms are mentioned in the credits section.
 
-## Gettings started
+---
+**NOTE**
+
+If you face issues check the [troubleshooting](#troubleshooting) section for hints on how to resolve
+the issue.
+
+---
+
+## Getting started
 
 We offer two methods for using cp3-bench:
 
-1. Manual installation on Ubuntu
-2. Automated installation with Docker
+1. [Manual](#manual-installation) installation on Ubuntu
+2. [Automated](#automated-installation) installation with Docker
 
 First we go through the manual steps and then introduce the automated installation with docker.
 The advantage of doing the manual installation is that you do not need docker, but you will 
@@ -26,7 +34,7 @@ that you correctly install and initialize `pyenv` and the virtual environments.
 other operating systems. For Windows users we recommend running Windows Subsystems for 
 Linux (WSL) and you may consider using the Docker installation. For this to work you also need admin privileges.
 
-To run this bench you need Ubunuty 22.04 or newer, Python 3.10 or newer, `pip`, and [pyenv](https://github.com/pyenv/pyenv). 
+To run this bench you need Ubuntu 22.04 or newer, Python 3.10 or newer, `pip`, and [pyenv](https://github.com/pyenv/pyenv). 
 On Ubuntu the `pyenv` dependencies can  be installed by: 
 ```shell
 sudo apt update
@@ -73,7 +81,30 @@ or with HTTPS:
 git clone https://github.com/CP3-Origins/cp3-bench.git
 ```
 
+It is good practice, but not required, to run this project in a virtual Python environment. This
+is to avoid bloating your system Python installation. You may need to install it with the command:
+
+```shell
+pip install virtualenv
+```
+
+To create a Python virtual environment you can check the [official documentation]https://docs.python.org/3/library/venv.html),
+but generally you can create it with a command like:
+
+```shell
+python -m venv venv
+```
+
+ Then you can enter the virtual environment using the command:
+
+```shell
+source venv/bin/activate
+```
+
+Then you will install the Python packages required for cp3-bench in an isolated environment.
+
 Then install the Python dependencies:
+
 ```shell
 pip install -r requirements.txt
 ```
@@ -110,6 +141,9 @@ which is setup with all necessities for using cp3-bench - abstracting away the i
 
 This installation method requires Docker which can be run on all common operating systems such as macOS, Ubuntu, Windows (via WSL). The installation steps for Docker can be found [here](https://docs.docker.com/engine/install/).
 
+**Note:** This build does not support Docker BuildKit. You may disable it by setting `DOCKER_BUILDKIT=0`. 
+You can also set it during the command using:
+
 ### Installation steps
 
 To install cp3-bench start by cloning the repository with SSH:
@@ -124,19 +158,23 @@ or with HTTPS:
 git clone https://github.com/CP3-Origins/cp3-bench.git
 ```
 
-To setup cp3-bench with Docker you first need to build the image. This can be done with the build command
-assuming you are in the root folder of cp3-bench:
-
-```shell
-docker build . -t cp3-bench
-```
-
-This command uses the tag flag `-t` to name the build `cp3-bench` which is a convinient way to label different builds. You can name it as you want or in principle leave out the tag.
-
-**Note:** This build does not support Docker BuildKit. You may disable it by setting `DOCKER_BUILDKIT=0`. You can also set it during the command using:
+To setup cp3-bench with Docker you first need to build the image. Remember, that if you wish to 
+include other files or folders with utility code or datasets, then you should addd these to the project
+before building the Docker image for the package. With that done you can build the image
+from the root folder of cp3-bench. If you have not set `DOCKER_BUILDKIT=0`, you can use the following
+command:
 
 ```shell
 DOCKER_BUILDKIT=0 docker build . -t cp3-bench
+```
+
+This command uses the tag flag `-t` to name the build `cp3-bench` which is a convenient way to label different builds. 
+You can name it as you want or in principle leave out the tag.
+
+If you have set `DOCKER_BUILDKIT=0` you can simply use the command:
+
+```shell
+docker build . -t cp3-bench
 ```
 
 The default is to install all cp3-bench with all methods, but we allow for a build argument to select a subset
@@ -154,7 +192,7 @@ To use the image you created with build you simply run:
 docker run -it cp3-bench
 ```
 
-This is will spin up a container based on your image and mount your terminal to that of the container. You can type `exit` (maybe a few times) to leave the container. In this container you install other methods if needed or run benchmarks as you feel like.
+This will spin up a container based on your image and mount your terminal to that of the container. You can type `exit` (maybe a few times) to leave the container. In this container you install other methods if needed or run benchmarks as you feel like.
 
 ## Usage of the package
 
@@ -191,8 +229,9 @@ key element of this benchmark tool.
 and creation of the environments, then check that `pyenv` is correctly installed.
 - If you get `ImportModelError` in the tests, it might be because you have not set
   paths correctly for `pyenv` or initialized `pyenv`.
-- If you get `Error: buildx failed with: ERROR to solve: process "/bin/sh/-c..` then this might indicate 
-  that  you are using Docker BuildKit, disable by setting `DOCKER_BUILDKIT=0` 
+- If you get something like `Error: buildx failed with: ERROR to solve: process "/bin/sh/-c..` 
+  during the Docker build process, then this might indicate 
+  that you are using Docker BuildKit, disable it by setting `DOCKER_BUILDKIT=0` 
 
 ## Contribution
 
