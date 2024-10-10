@@ -5,10 +5,14 @@ name: Python test
 
 on:
   push:
+    paths-ignore:
+      - "README.md"
     branches: [ "master" ]
   pull_request:
-      branches:
-        - "**"
+    paths-ignore:
+      - "README.md"
+    branches:
+      - "**"
 
 permissions:
   contents: read
