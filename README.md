@@ -33,6 +33,8 @@ that you correctly install and initialize `pyenv` and the virtual environments.
 **NOTE**: This tool currently runs only on Ubuntu. However, some algorithms may work on 
 other operating systems. For Windows users we recommend running Windows Subsystems for 
 Linux (WSL) and you may consider using the Docker installation. For this to work you also need admin privileges.
+_However_, certain algorithm that do not have admin requirements may still work if you attempt to install without 
+admin privileges.
 
 To run this bench you need Ubuntu 22.04 or newer, Python 3.10 or newer, `pip`, and [pyenv](https://github.com/pyenv/pyenv). 
 On Ubuntu the `pyenv` dependencies can  be installed by: 
