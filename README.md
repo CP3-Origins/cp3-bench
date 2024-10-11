@@ -39,7 +39,7 @@ admin privileges.
 To run this bench you need Ubuntu 22.04 or newer, Python 3.10 or newer, `pip`, and [pyenv](https://github.com/pyenv/pyenv). 
 On Ubuntu the `pyenv` dependencies can  be installed by: 
 ```shell
-sudo apt update
+sudo apt update;
 sudo apt install build-essential libssl-dev zlib1g-dev \
 libbz2-dev libreadline-dev libsqlite3-dev curl \
 libncursesw5-dev xz-utils tk-dev libxml2-dev libxmlsec1-dev libffi-dev liblzma-dev
@@ -90,7 +90,7 @@ is to avoid bloating your system Python installation. You may need to install it
 pip install virtualenv
 ```
 
-To create a Python virtual environment you can check the [official documentation]https://docs.python.org/3/library/venv.html),
+To create a Python virtual environment you can check the [official documentation](https://docs.python.org/3/library/venv.html),
 but generally you can create it with a command like:
 
 ```shell
