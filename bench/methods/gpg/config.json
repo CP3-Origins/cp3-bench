@@ -7,6 +7,10 @@
     "sudo apt install -y python3-pybind11",
     "mkdir deps",
     "git clone https://github.com/marcovirgolin/gpg.git deps/gpg",
+    "sed -i 's/pybind11::headers / /g' deps/gpg/CMakeLists.txt",
+    "sed -i 's/pybind11::pybind11 / /g' deps/gpg/CMakeLists.txt",
+    "sed -i 's/pybind11::module / /g' deps/gpg/CMakeLists.txt",
+    "sed -i 's/pybind11::lto / /g' deps/gpg/CMakeLists.txt",
     "sed -i 's/python setup.py install --user --force && /pip install -e ./g' deps/gpg/Makefile",
     "sed -i '15,16d' deps/gpg/Makefile",
     "cd deps/gpg && make && cd -"
