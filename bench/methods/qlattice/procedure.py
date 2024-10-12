@@ -71,6 +71,9 @@ class QlatticeProcedure(MethodEvaluator):
 
             # Ignore terms with small coefficients
             if skip:
+                # Remove the sign of the term we skip and check it is not the first term
+                if equation != "":
+                    equation = equation[:-1]
                 continue
 
             # Check for floats with too many digits
