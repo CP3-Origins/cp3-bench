@@ -38,7 +38,11 @@ jobs:
       - name: Install docker
         run: |
           /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+          echo 'eval "$(/opt/homebrew/bin shellenv)"' >> /Users/runner/.bash_profile
+          eval "$(/opt/homebrew/bin/shellenv)"
+
           brew install --cask docker
+          docker --version
           docker ps
           docker build -t cp3-bench . --build-arg METHODS=${{ inputs.method }}
 
