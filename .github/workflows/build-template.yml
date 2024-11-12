@@ -16,14 +16,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout
+      - name: Checkout and docker build
         uses: actions/checkout@v3
 
-      - name: Setup QEMU
-        uses: docker/setup-qemu-action@v2
-
       - name: Build Docker image
-        run: docker build -t cp3-bench . --build-arg METHODS=${{ inputs.method }} --platform linux/arm64
+        run: docker build -t cp3-bench . --build-arg METHODS=${{ inputs.method }}
 
       - name: Run tests
         uses: addnab/docker-run-action@v3
