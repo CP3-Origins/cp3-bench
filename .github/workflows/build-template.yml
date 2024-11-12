@@ -38,7 +38,7 @@ jobs:
       - name: Install docker
         run: |
           /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-          brew cast install docker
+          brew install docker
 
       - name: Build Docker image
         run: docker build -t cp3-bench . --build-arg METHODS=${{ inputs.method }}
