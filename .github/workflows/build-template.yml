@@ -39,7 +39,7 @@ jobs:
         run: |
           /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
           brew install --cask docker
-          open --background -a Docker
+          docker ps
           docker build -t cp3-bench . --build-arg METHODS=${{ inputs.method }}
 
       - name: Open Docker
