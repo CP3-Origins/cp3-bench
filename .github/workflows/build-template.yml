@@ -19,38 +19,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Build Docker image
-        run: docker build -t cp3-bench . --build-arg METHODS=${{ inputs.method }}
-
-      - name: Run tests
-        uses: addnab/docker-run-action@v3
-        with:
-          image: cp3-bench
-          run: python3 -m unittest tests/utils/test_build.py
-
-  build_template_macos:
-    runs-on: macos-latest
-
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-      
-      - name: Install docker
-        run: |
-          /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-          echo 'eval "$(/opt/homebrew/bin shellenv)"' >> /Users/runner/.bash_profile
-          eval "$(/opt/homebrew/bin/shellenv)"
-
-          brew install --cask docker
-          docker --version
-          docker ps
-          docker build -t cp3-bench . --build-arg METHODS=${{ inputs.method }}
-
-      - name: Open Docker
-        run: open /Apllications/Docker.app
+      - name: Setup QEMU
+        uses: docker/setup-qemu-action@v2
 
       - name: Build Docker image
-        run: docker build -t cp3-bench . --build-arg METHODS=${{ inputs.method }}
+        run: docker build -t cp3-bench . --build-arg METHODS=${{ inputs.method }} --platform linux/amd64,linux/arm64
 
       - name: Run tests
         uses: addnab/docker-run-action@v3
