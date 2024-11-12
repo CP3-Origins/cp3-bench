@@ -41,7 +41,7 @@ jobs:
           brew install --cask docker
 
       - name: Open Docker
-        run: open --background -a Docker
+        run: open /Apllications/Docker.app
 
       - name: Build Docker image
         run: docker build -t cp3-bench . --build-arg METHODS=${{ inputs.method }}
