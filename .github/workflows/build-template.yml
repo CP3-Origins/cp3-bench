@@ -12,8 +12,24 @@ env:
   DOCKER_BUILDKIT: 0
 
 jobs:
-  build_template:
-    runs-on: ubuntu-latest
+  build_template_x86:
+    runs-on: [ubuntu-latest, x86]
+
+    steps:
+      - name: Checkout and docker build
+        uses: actions/checkout@v3
+
+      - name: Build Docker image
+        run: docker build -t cp3-bench . --build-arg METHODS=${{ inputs.method }}
+
+      - name: Run tests
+        uses: addnab/docker-run-action@v3
+        with:
+          image: cp3-bench
+          run: python3 -m unittest tests/utils/test_build.py
+
+  build_template_arm:
+    runs-on: [macos-latest, arm]
 
     steps:
       - name: Checkout and docker build
