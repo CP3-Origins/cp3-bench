@@ -16,7 +16,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout and docker build
+      - name: Checkout
         uses: actions/checkout@v3
 
       - name: Build Docker image
@@ -32,8 +32,13 @@ jobs:
     runs-on: macos-latest
 
     steps:
-      - name: Checkout and docker build
+      - name: Checkout
         uses: actions/checkout@v3
+      
+      - name: Install docker
+        run: |
+          /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+          brew cast install docker
 
       - name: Build Docker image
         run: docker build -t cp3-bench . --build-arg METHODS=${{ inputs.method }}
