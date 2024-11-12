@@ -13,7 +13,7 @@ env:
 
 jobs:
   build_template_x86:
-    runs-on: [ubuntu-latest, x86]
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout and docker build
@@ -28,8 +28,8 @@ jobs:
           image: cp3-bench
           run: python3 -m unittest tests/utils/test_build.py
 
-  build_template_arm:
-    runs-on: [macos-latest, arm64]
+  build_template_macos:
+    runs-on: macos-latest
 
     steps:
       - name: Checkout and docker build
