@@ -12,7 +12,7 @@ env:
   DOCKER_BUILDKIT: 0
 
 jobs:
-  build_template_x86:
+  build_template:
     runs-on: ubuntu-latest
 
     steps:
@@ -23,7 +23,7 @@ jobs:
         uses: docker/setup-qemu-action@v2
 
       - name: Build Docker image
-        run: docker build -t cp3-bench . --build-arg METHODS=${{ inputs.method }} --platform linux/amd64,linux/arm64
+        run: docker build -t cp3-bench . --build-arg METHODS=${{ inputs.method }} --platform linux/arm64
 
       - name: Run tests
         uses: addnab/docker-run-action@v3
