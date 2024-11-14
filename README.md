@@ -133,7 +133,7 @@ eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
 ```
 
-## Automated installation
+## Automated installation on x86
 
 This section explains how to get started with cp3-bench using Docker. If you want to learn more check out 
 this [101 tutorial](https://www.docker.com/101-tutorial/). This technology allows for the creation of an image
@@ -141,7 +141,7 @@ which is setup with all necessities for using cp3-bench - abstracting away the i
 
 ### Prerequisites
 
-This installation method requires Docker which can be run on all common operating systems such as macOS, Ubuntu, Windows (via WSL). The installation steps for Docker can be found [here](https://docs.docker.com/engine/install/).
+This installation method requires Docker which can be run on all common operating systems such as macOS (x86), Ubuntu, Windows (via WSL). The installation steps for Docker can be found [here](https://docs.docker.com/engine/install/). For macOS on ARM see [this](#)
 
 **Note:** This build does not support Docker BuildKit. You may disable it by setting `DOCKER_BUILDKIT=0`. 
 You can also set it during the command using:
@@ -192,6 +192,57 @@ To use the image you created with build you simply run:
 
 ```shell
 docker run -it cp3-bench
+```
+
+This will spin up a container based on your image and mount your terminal to that of the container. You can type `exit` (maybe a few times) to leave the container. In this container you install other methods if needed or run benchmarks as you feel like.
+
+## Automated installation on ARM (MacOS)
+
+This package can also be used on MacOS devices running ARM chips with a few caveat. The first generation chips like the M1 will not be able to run all of the algorithms. But newer chips should be able to run most if not all algorithms. In short your milage may very, but most algorithms are expected to work. This procedure also requires Docker.
+
+### Installation steps
+
+To install cp3-bench start by cloning the repository with SSH:
+
+```shell
+git clone git@github.com:CP3-Origins/cp3-bench.git
+```
+
+or with HTTPS:
+
+```shell
+git clone https://github.com/CP3-Origins/cp3-bench.git
+```
+
+To setup cp3-bench with Docker you first need to build the image. On arm we need the `--platform=linux/amd64` paramter to use x86 emulation. If you have not set `DOCKER_BUILDKIT=0`, you can use the following
+command:
+
+```shell
+DOCKER_BUILDKIT=0 docker build . --platform=linux/amd64 -t cp3-bench
+```
+
+This command uses the tag flag `-t` to name the build `cp3-bench` which is a convenient way to label different builds. 
+You can name it as you want or in principle leave out the tag.
+
+If you have set `DOCKER_BUILDKIT=0` you can simply use the command:
+
+```shell
+docker build . --platform=linux/amd64 -t cp3-bench
+```
+
+The default is to install all cp3-bench with all methods, but we allow for a build argument to select a subset
+of methods to be installed using the following command:
+
+```shell
+docker build . --platform=linux/amd64 -t cp3-bench --build-arg METHODS=ffx,gpg
+```
+Here you can set `METHODS` equal to the comma separated list of methods you want to install. This `build` command creates the image of fully functional system with all dependencies set and it will take some time to
+complete. Note that this image will be +10 GB in size for a full build. 
+
+To use the image you created with build you simply run:
+
+```shell
+docker run --platform=linux/amd64 -it cp3-bench
 ```
 
 This will spin up a container based on your image and mount your terminal to that of the container. You can type `exit` (maybe a few times) to leave the container. In this container you install other methods if needed or run benchmarks as you feel like.

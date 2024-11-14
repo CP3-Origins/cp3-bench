@@ -2,7 +2,7 @@
 ARG METHODS="all"
 
 # Get the base image
-FROM ubuntu:22.04
+FROM 	amd64/ubuntu:22.04
 ARG DEBIAN_FRONTEND=noninteractive
 
 # Set methods value
